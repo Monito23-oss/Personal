@@ -1,0 +1,86 @@
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+{% block title %}
+  Modificar Empleados
+{% endblock title %}
+
+{% block content %}
+<!--  Incluye cabezera -->
+  {% include 'includes/header.html' %}
+<!--  Fin cabezera -->
+<div class="grid-container">
+  <div class="grid-x">
+    <h1 class = "cell">Modificar los Empleados</h1>
+      <form class="cell grid-x grid-margin-x" method = "GET">{% csrf_token %}
+        <div class="cell large-7">
+          <!--  si vamos a recuperar un kword necesitamo indicarlo -->
+          <input type ="text" id = "Kword" name= "Kword" placeholder="Buscar Empleado por Apellido">
+      </div>
+      <div class="cell large-2">
+        <button type ="submit" class="success button">Buscar</button>
+    </div>
+  </form>
+    <div class="cell">
+      <table>
+        <thead>
+          <tr>
+            <th width="200">ID</th>
+            <th width="200">NOMBRE</th>
+            <th width="200">APELLIDO</th>
+            <th width="200">DEPARTAMENTO</th>
+            <th width="200">ACCION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lista in empleados %}  <!-- {{object_list}}--> <!-- Entre corchetes para recibir el queryset del la vista-->
+            <tr>
+              <td>{{lista.id}} </td>
+              <td>{{lista.first_name}} </td>
+              <td>{{lista.last_name}} </td>
+              <td>{{lista.departamento}} </td>
+              <td><a class="button success" href="{% url 'personas_app:modificar_empleado' lista.id %}">Editar</a></td>
+              <td><a class="button alert" href="{% url 'personas_app:eliminar_empleado' lista.id %}">Eliminar</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+  <div class="cell">
+    <!--  Validacion para verificar si hay paginacion -->
+    {% if is_paginated %}
+    <nav aria-label="Pagination">
+      <ul class="pagination">
+        <!--  Validacion si hay elementos anteriores muestre el previous -->
+        {% if page_obj.has_previous %}
+        <li class="pagination-previous">
+          <a href="?page={{page_obj.previous_page_number}}">Atras </li>
+        {% endif %}
+        <!--  Vamos a iter para mostrar la cantidad de paginas  que da la informacion necesaria -->
+        {% for pagina in paginator.page_range %}
+        <!--  Vamos a poner un recuadro azul para la interaccion  -->
+        {% ifequal pagina page_obj.number%}
+        <li class="current"><span class="show-for-sr">You're on page</span> {{pagina}}</li>
+        {% else %}
+          <li><a href="?page={{pagina}}">{{ pagina}}</a></li>
+        {% endifequal %}
+        {% endfor %}
+        <!--  Validacion si hay elementos siguientes muestre el next -->
+        {% if page_obj.has_next %}
+        <li class="pagination-next">
+        <a href="?page={{page_obj.next_page_number}}">Siguiente </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    {% endif %}
+
+  </div>
+
+
+</div>
+</div>
+
+{% endblock content %}

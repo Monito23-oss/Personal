@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pagina de habilidades</title>
+  </head>
+  <body>
+    <h1>Lista de habilidades de empleados</h1>
+    <!-- {{listaNumeros}}--> <!-- Entre corchetes para recibir el queryset del la vista-->
+    <p>
+      <ul>
+        {% for lista in habilidades %}  <!-- {{object_list}}--> <!-- Entre corchetes para recibir el queryset del la vista-->
+        <li>{{lista}}</li>
+        {% endfor %}
+      </ul>
+    </p>
+
+  </body>
+</html>

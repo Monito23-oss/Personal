@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+{% block title %}
+  Ver Departamentos
+{% endblock title %}
+
+{% block content %}
+<!--  Incluye cabezera -->
+  {% include 'includes/header.html' %}
+<!--  Fin cabezera -->
+<div class ="grid-container">
+  <div class="grid-x">
+    <h1 class ="cell">Lista Departamentos</h1>
+    <div class ="cell">
+      <table>
+        <tbody>
+          {% for depa in departamentos %}
+          <tr>
+            <td>{{depa.name}}</td>
+            <td>{{depa.shor_name}}</td>
+            <td><a class="button warning" href="{% url 'personas_app:empleados_area' depa.shor_name %}">Ver Empleados</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+{% block title %}
+  Modificacion exitosa de Empleados
+{% endblock title %}
+
+{% block content %}
+<!--  Incluye cabezera -->
+  {% include 'includes/header.html' %}
+<!--  Fin cabezera -->
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+    <h1 class="cell">
+      El empleado ha sido Eliminado con exito
+    </h1>
+
+      <div class="cell small-4">&nbsp;</div>
+      <div class="cell small-4"><a href="{% url 'personas_app:empleados_admin' %}" class="button">Volver</a></div>
+      <div class="cell small-4">&nbsp;</div>
+
+
+
+ </div>
+</div>
+
+{% endblock content %}

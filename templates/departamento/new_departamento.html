@@ -1,0 +1,88 @@
+
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+{% block title %}
+  Registrar Departamento
+{% endblock title %}
+
+{% block content %}
+<!--  Incluye cabezera -->
+  {% include 'includes/header.html' %}
+<!--  Fin cabezera -->
+<div class="grid-container">
+  <div class="grid-x">
+    <h1 class ="cell">Registrar Departamento</h1>
+    <form class = "cell callout grid-x grid-margin-x" method="POST">{% csrf_token %}
+<!-- Aqui se va a definir el metodo post para enviar la informacion registrada -->
+  <!-- Aqui se va a crear un recuadro para poder registrar los datos al CreateView con la palabra reservada form-->
+      <div class=" cell large-6">
+          <label>Nombres:
+            {{ form.nombre}}
+          </label>
+        </div>
+      <div class=" cell large-6">
+        <label>Apellidos:
+            {{ form.apellidos }}
+        </label>
+      </div>
+      <div class=" cell large-6">
+        <label>Departamento:
+            {{ form.departamento}}
+        </label>
+      </div>
+      <div class=" cell large-6">
+        <label>Nombre corto:
+            {{ form.shorname}}
+        </label>
+      </div>
+      <div class="  cell ">
+        <button type="submit" class="success button">Registrar</button><!-- Boton para registrar los datos del registro -->
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registrar departamento y personal </title>
+  </head>
+  <body>
+    <h1>Registrar departamento</h1>
+    <form method ="POST">{% csrf_token %}
+      <h3>Datos empleado</h3>
+      <p>
+        {{form.nombre}}
+      </p>
+      <p>
+        {{form.apellidos}}
+      </p>
+      <h3>Datos de departamento</h3>
+      <p>
+        {{form.departamento}}
+      </p>
+      <p>
+        {{form.shorname}}
+      </p>
+
+      <button type="submit">Guardar</button>
+    </form>
+
+  </body>
+</html>
+-->

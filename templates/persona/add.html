@@ -1,0 +1,79 @@
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+{% block title %}
+  Registrar Nuevo  Empleado
+{% endblock title %}
+
+{% block content %}
+<!--  Incluye cabezera -->
+  {% include 'includes/header.html' %}
+<!--  Fin cabezera -->
+<div class="grid-container">
+  <div class="grid-x">
+    <h1 class="cell">
+      Registrar nuevo Empleado
+    </h1>
+    <div class="cell">
+      <form class = "grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+  <!-- Aqui se va a definir el metodo post para enviar la informacion registrada -->
+    <!-- Aqui se va a crear un recuadro para poder registrar los datos al CreateView con la palabra reservada form-->
+        <div class=" cell large-6">
+            <label>Nombres:
+              {{ form.first_name }}
+            </label>
+          </div>
+        <div class=" cell large-6">
+          <label>Apellidos:
+              {{ form.last_name }}
+          </label>
+        </div>
+        <div class=" cell large-6">
+          <label>Trabajo:
+              {{ form.job}}
+          </label>
+        </div>
+        <div class=" cell large-6">
+          <label>Departamento:
+              {{ form.departamento}}
+          </label>
+        </div>
+        <div class=" cell large-6">
+          <label>Habilidades extra:
+              {{ form.habilidades}}
+          </label>
+        </div>
+        <div class=" cell large-6">
+          <label>Foto:
+              {{ form.avatar}}
+          </label>
+        </div>
+        <div class="  cell ">
+          <button type="submit" class="success button">Registrar</button><!-- Boton para registrar los datos del registro -->
+        </div>
+
+      </form>
+    </div>
+
+ </div>
+</div>
+
+{% endblock content %}
+<!--<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pagina del CreateView</title>
+  </head>
+  <body>
+    <form method="POST">{% csrf_token %}
+    <h1>Registrar un nuevo empleado</h1>
+
+    {{ form.as_p }}
+     <button type="submit">Agregar</button>
+  </form>
+  </body>
+</html>
+-->

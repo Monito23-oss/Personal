@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mi pagina de Crear </title>
+  </head>
+  <body>
+    <h1>Prueba de CreateView</h1>
+    <form method ="POST">{% csrf_token %}
+      {{form.as_p}}
+      <button type="submit">Guardar</button>
+    </form>
+    
+  </body>
+</html>

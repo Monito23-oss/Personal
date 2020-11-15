@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+{% block title %}
+  {{ object.first_name }}
+{% endblock title %}
+
+{% block content %}
+<!--  Incluye cabezera -->
+  {% include 'includes/header.html' %}
+<!--  Fin cabezera -->
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell large-4 card" style="width: 300px; margin-top: 20px;">
+      <div class="card-divider">
+        {{ empleado.get_job_display}}
+      </div>
+      {% if empleado.avatar %}
+        <img src="{{empleado.avatar.url}}">
+      {% else %}
+        <img src="{% static 'img/Usuario.jpg' %}">
+      {% endif %}
+
+      <div class="card-section">
+        <h4>{{empleado.first_name}}</h4>
+        <h4>{{empleado.last_name}}</h4>
+        <p>{{empleado.departamento.name}}</p>
+        <p><span class="label">Habilidades:</span></p>
+        <ul class="vertical menu">
+          {% for h in empleado.habilidades.all %}
+            <li>{{h.habilidad}}</li>
+          {% endfor %}
+        </ul>
+        <p></p>
+        <p></p>
+        <div class="grid-x grid-margin-x">
+          <div class="cell small-4">&nbsp;</div>
+          <div class="cell small-4"><a href="{% url 'personas_app:empleados_all' %}" class="button">Volver</a></div>
+          <div class="cell small-4">&nbsp;</div>
+  </div>
+
+
+
+  </div>
+</div>
+
+
+ </div>
+</div>
+
+{% endblock content %}
+<!--
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pagina del DetailView</title>
+  </head>
+  <body>
+    <h1>Detalle de el {{Titulo}}</h1>
+    {{object}}
+    <h1>Todos los datos del empleado:</h1>
+    <p>
+      <ul>
+        <li>{{object.first_name}}</li>
+        <li>{{object.last_name}}</li>
+        <li>{{object.job}}</li>
+        <li>{{object.departamento}}</li>
+        <li>{{object.habilidades}}</li>
+        <li>{{object.hoja_de_vida}}</li>
+
+      </ul>
+    </p>
+  </body>
+</html>
+-->

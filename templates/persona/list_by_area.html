@@ -1,0 +1,84 @@
+
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+{% block title %}
+  Ver Empleados por Departamento
+{% endblock title %}
+
+{% block content %}
+<!--  Incluye cabezera -->
+  {% include 'includes/header.html' %}
+<!--  Fin cabezera -->
+<div class="grid-container">
+  <div class="grid-x">
+    <h1 class= "cell"> Empleados por area:</h1>
+    <div class= "cell">
+      <table>
+        <thead>
+          <tr>
+            <th width="200">ID</th>
+            <th width="200">NOMBRE</th>
+            <th width="200">APELLIDO</th>
+            <th width="200">DEPARTAMENTO</th>
+            <th width="200">ACCION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lista in empleados %}  <!-- {{object_list}}--> <!-- Entre corchetes para recibir el queryset del la vista-->
+            <tr>
+              <td>{{lista.id}} </td>
+              <td>{{lista.first_name}} </td>
+              <td>{{lista.last_name}} </td>
+              <td>{{lista.departamento}} </td>
+              <td><a class="button warning" href="{% url 'personas_app:empleados_detail' lista.id %}">Ver</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+<!-- ejemplo}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mi pagina de lista</title>
+  </head>
+  <body>
+    <h1>Lista de empleados por area</h1>
+    -->
+    <!-- {{listaNumeros}}--> <!-- Entre corchetes para recibir el queryset del la vista-->
+    <!-- ejemplo}
+    <p>
+      <ul>
+        -->
+        <!-- ejemplo}
+        {% for lista in object_list %}  <!-- {{object_list}}--> <!-- Entre corchetes para recibir el queryset del la vista-->
+        <!-- ejemplo}
+        <li>{{lista}}</li>
+        {% endfor %}
+      </ul>
+    </p>
+
+  </body>
+</html>
+    -->
